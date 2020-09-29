@@ -1,14 +1,17 @@
 import React from "react";
 import "./Page.css";
+import StarRating from "./StarRating";
 
 function Survey() {
   return (
     <div className="contact-card">
       <div className="content-box">
         <div className="content">
+        
           <h1> Survey</h1>
           <p>We value your feedback</p>
-          <div className="content-mild">
+          <div className="content-mild"> 
+          <StarRating />         
             <form className=" form-cardbox">
                 <div className="message">
                     <div className="form-in">

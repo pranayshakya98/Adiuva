@@ -5,12 +5,16 @@ import Logo from "./adiuva_logo.png";
 import "./WelcomeNavbar.css";
 
 function Navbar() {
+  //Set the state when an element is clicked
+  //Reverse the states
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
+  // Set the size of an element on mobile screen
   const handleClick = () => setClick(!click);
   const closeMobileViewMenu = () => setClick(false);
 
+  // the size of button is adjusted for screen width less than 960
   const showButton = () => {
     if (window.innerWidth <= 960) {
       setButton(false);
@@ -23,6 +27,7 @@ function Navbar() {
     showButton();
   }, []);
 
+  // Adding event Listener for resizing the button
   window.addEventListener("resize", showButton);
 
   return (
@@ -32,10 +37,15 @@ function Navbar() {
           <Link to="/" className="navbar-logo" onClick={closeMobileViewMenu}>
             <img src={Logo} alt="LOGO" style={{ aspectRatio: 3 / 2 }} />
           </Link>
+
+          {/* Clicking on menu-icon displays menu item */}
           <div className="menu-icon" onClick={handleClick}>
+            {/* Takes to the hamberger menu when clicked else bars */}
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
+          {/* Set navbar sizes on the basis of screen */}
           <ul className={click ? "nav-menu active" : "nav-menu"}>
+            {/* Links to the respected pages both on the browser and mobile view */}
             <li className="welcomeNav-item">
               <Link
                 to="/login"
@@ -73,13 +83,8 @@ function Navbar() {
                 Sign Up
               </Link>
             </li>
-<<<<<<< HEAD
-            </ul>
-          {button && <Button buttonStyle="btn--outline">Sign Up</Button>}
-=======
           </ul>
           {button && <Button buttonStyle="btn--outline">SignUp</Button>}
->>>>>>> 3c60483534992a8634adad75e25fc43010c45887
         </div>
       </nav>
     </>

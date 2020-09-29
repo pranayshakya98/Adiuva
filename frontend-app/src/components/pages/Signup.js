@@ -1,138 +1,129 @@
 import React from "react";
 import "./Page.css";
 
+//function for creating the signup page
 function Signup() {
   return (
-    <div className="contact-card">
+    //creating the interface for the page.
+    <div className="contact-card"> 
       <div className="content-box">
-        <div className="content-subbox">
-          <h1> Sign-up</h1>
-          <p>Please enter the following information:</p>
+        <div className="content">
+          <h1> Please Sign Up </h1>              
           <div className="content-mild">
+            //creating the form in order to fill the information for the sign up page
             <form className=" form-cardbox">
-              <div className="form-input">
-                <label htmlFor="firstname" className="form-label">
-                  <input
-                    id="firstname"
-                    type="text"
-                    name="firstname"
-                    className="form-input"
-                    placeholder="First name*"
-                  />
-                </label>
-              </div>
-              <div className="form-input">
-                <label htmlFor="middlename" className="form-label">
-                  <input
-                    id="middlename"
-                    type="text"
-                    name="middlename"
-                    className="form-input"
-                    placeholder="Middle name"
-                  />
-                </label>
-              </div>
-              <div className="form-input">
-                <label htmlFor="lastname" className="form-label">
-                  <input
-                    id="lastname"
-                    type="text"
-                    name="lastname"
-                    className="form-input"
-                    placeholder="Last name*"
-                  />
-                </label>
-              </div>
-              <div className="form-input">
-                <label htmlFor="city" className="form-label">
-                  <input
-                    id="city"
-                    type="text"
-                    name="city"
-                    className="form-input"
-                    placeholder="City"
-                  />
-                </label>
-              </div>
-              <div className="form-input">
-                <label htmlFor="state" className="form-label">
-                  <input
-                    id="state"
-                    type="text"
-                    name="state"
-                    className="form-input"
-                    placeholder="State*"
-                  />
-                </label>
-              </div>
-              <div className="form-input">
-                <label htmlFor="country" className="form-label">
-                  <input
-                    id="country"
-                    type="text"
-                    name="username"
-                    className="form-input"
-                    placeholder="Country*"
-                  />
-                </label>
-              </div>
-              <div className="form-input">
-                <label htmlFor="zipcode" className="form-label">
-                  <input
-                    id="zipcode"
-                    type="text"
-                    name="username"
-                    className="form-input"
-                    placeholder="Zipcode*"
-                  />
-                </label>
-              </div>
-              <div className="form-input">
+              <div className="form-fill1">
+              //set the criterias for the username
                 <label htmlFor="username" className="form-label">
                   <input
                     id="username"
                     type="text"
                     name="username"
-                    className="form-input"
-                    placeholder="username*"
+                    className="form-fill"
+                    placeholder="Username*"
                   />
                 </label>
               </div>
-              <div className="form-input">
+              //set the criterias for the fullname
+              <div className="form-fill">
+                <label htmlFor="fullname" className="form-label">
+                  <input
+                    id="fullname"
+                    type="text"
+                    name="fullname"
+                    className="form-fill"
+                    placeholder="Full name*"
+                  />
+                </label>
+              </div>
+              //set the criterias for the email
+              <div className="form-fill">
                 <label htmlFor="email" className="form-label">
                   <input
                     id="email"
                     type="text"
                     name="email"
-                    className="form-input"
+                    className="form-fill"
                     placeholder="Email*"
                   />
                 </label>
               </div>
-              <div className="form-input">
-                <label htmlFor="password" classNAme="form-label">
+              //set the criterias for the city
+              <div className="form-fill">
+                <label htmlFor="city" className="form-label">
+                  <input
+                    id="city"
+                    type="text"
+                    name="city"
+                    className="form-fill"
+                    placeholder="City"
+                  />
+                </label>
+              </div>
+
+              //set the criterias for the state
+              <div className="form-fill">
+                <label htmlFor="state" className="form-label">
+                  <input
+                    id="state"
+                    type="text"
+                    name="state"
+                    className="form-fill"
+                    placeholder="State*"
+                  />
+                </label>
+              </div>
+              //set the criterias for the zipcode
+              <div className="form-fill">
+                <label htmlFor="zipcode" className="form-label">
+                  <input
+                    id="zipcode"
+                    type="text"
+                    name="zipcode"
+                    className="form-fill"
+                    placeholder="Zipcode*"
+                  />
+                </label>
+              </div>
+              //set the criterias for the country
+              <div className="form-fill">
+                <label htmlFor="country" className="form-label">
+                  <input
+                    id="country"
+                    type="text"
+                    name="country"
+                    className="form-fill"
+                    placeholder="Country*"
+                  />
+                </label>
+              </div>
+              //set the criterias for the password
+              <div className="form-fill">
+                <label htmlFor="password" className="form-label">
                   <input
                     id="password"
-                    type="password"
+                    type="text"
                     name="password"
-                    className="form-input"
+                    className="form-fill"
                     placeholder="Password*"
                   />
                 </label>
               </div>
-              <div className="form-input">
-                <label htmlFor="repassword" classNAme="form-label">
+              //set the criterias for the second password
+              <div className="form-fill">
+                <label htmlFor="password2" className="form-label">
                   <input
-                    id="repassword"
-                    type="password"
-                    name="confirmpassword"
-                    className="form-input"
-                    placeholder="Re-enter password*"
+                    id="password2"
+                    type="text"
+                    name="password2"
+                    className="form-fill"
+                    placeholder="Confirm Password*"
                   />
                 </label>
               </div>
-              <button className="form-btn" type="submit">
-                Submit
+              //create a button to submit the information.
+              <button className="form-btnn" type="submit">
+                Sign Up
               </button>
             </form>
           </div>
