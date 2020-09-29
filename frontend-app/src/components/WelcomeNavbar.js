@@ -73,8 +73,13 @@ function Navbar() {
                 Sign Up
               </Link>
             </li>
+<<<<<<< HEAD
             </ul>
           {button && <Button buttonStyle="btn--outline">Sign Up</Button>}
+=======
+          </ul>
+          {button && <Button buttonStyle="btn--outline">SignUp</Button>}
+>>>>>>> 3c60483534992a8634adad75e25fc43010c45887
         </div>
       </nav>
     </>

@@ -18,8 +18,12 @@ function App() {
           <Route path="/contactus" component={Contact} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
+<<<<<<< HEAD
           <Route path="/survey" component={Survey} />
           {/* <Route path="/signin" component={Sign} /> */}
+=======
+          
+>>>>>>> 3c60483534992a8634adad75e25fc43010c45887
         </Switch>
       </Router>
     </>
