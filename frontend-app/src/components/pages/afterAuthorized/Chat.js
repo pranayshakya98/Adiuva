@@ -1,15 +1,16 @@
 import React from "react";
+import Users from "./Users";
 import Navbar from "../../MainNavbar";
+import "./Chat.css";
 
 function Chat() {
   return (
-    <><Navbar />
-    <div className="contact-card">
-    <p>Chat Page</p>
-    <p> Chat with your donor/donee.. 
-        
-    </p>
-    </div>
+    <>
+      <div className="chatpage">
+        <Navbar />
+
+        <Users />
+      </div>
     </>
   );
 }
