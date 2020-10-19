@@ -69,7 +69,7 @@
   margin-left: 10px;
   width: 280px;
   padding: 10px 10px;
-  border-radius: 5px;
+  border-radius: 50px;
   height: 180px;
   outline: none;
 }
@@ -351,4 +351,25 @@
     color: #242424;
     border-radius: 0;
   }
+}
+
+.app{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+input[type="radio"]
+{
+  display: none;
+  text-align:left;
+  /*position: absolute;
+  opacity: 0;
+  width: 0;*/
+} 
+
+.star{
+  cursor: pointer;
+  transition: color 200ms;
 }

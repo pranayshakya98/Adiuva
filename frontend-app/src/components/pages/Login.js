@@ -24,7 +24,7 @@ function Login() {
                 <label htmlFor="password" className="form-label">
                   <input
                     id="password"
-                    type="text"
+                    type="password"
                     name="email"
                     className="form-inp"
                     placeholder="Password"

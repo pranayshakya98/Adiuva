@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
@@ -7,6 +9,7 @@ import Contact from "./components/pages/Contact";
 import Home from "./components/pages/Home";
 import Survey from "./components/pages/Survey";
 import Signup from "./components/pages/Signup";
+import profile from "./components/pages/profile";
 
 function App() {
   return (
@@ -16,12 +19,13 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/contactus" component={Contact} />
+          <Route path="/profilepage" component={profile} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/survey" component={Survey} />
           {/* <Route path="/signin" component={Sign} /> */}
         </Switch>
-      </Router>
+      </Router>.
     </>
   );
 }

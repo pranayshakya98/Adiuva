@@ -1,10 +1,18 @@
+//@flow
+
+
+
 import React, { useState, useEffect } from "react";
 import { Button } from "./Button";
 import { Link } from "react-router-dom";
 import Logo from "./adiuva_logo.png";
 import "./WelcomeNavbar.css";
 
-function Navbar() {
+
+function Navbar()
+ {
+
+
   //Set the state when an element is clicked
   //Reverse the states
   const [click, setClick] = useState(false);
@@ -20,25 +28,25 @@ function Navbar() {
       setButton(false);
     } else {
       setButton(true);
-    }
+    }        
   };
+
+ 
 
   useEffect(() => {
     showButton();
   }, []);
-
-  // Adding event Listener for resizing the button
+// Adding event Listener for resizing the button
   window.addEventListener("resize", showButton);
-
   return (
     <>
+   
       <nav className="welcomeNavbar">
         <div className="welcomeNavbar-container">
           <Link to="/" className="navbar-logo" onClick={closeMobileViewMenu}>
             <img src={Logo} alt="LOGO" style={{ aspectRatio: 3 / 2 }} />
           </Link>
-
-          {/* Clicking on menu-icon displays menu item */}
+          /* Clicking on menu-icon displays menu item */
           <div className="menu-icon" onClick={handleClick}>
             {/* Takes to the hamberger menu when clicked else bars */}
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
@@ -76,6 +84,16 @@ function Navbar() {
 
             <li>
               <Link
+                to="/profilepage"
+                className="nav-links"
+                onClick={closeMobileViewMenu}
+              >
+                Profile Page
+              </Link>
+            </li>
+
+            <li>
+              <Link
                 to="/signup"
                 className="nav-links-mobile"
                 onClick={closeMobileViewMenu}
@@ -83,6 +101,7 @@ function Navbar() {
                 Sign Up
               </Link>
             </li>
+            
           </ul>
           {button && <Button buttonStyle="btn--outline">SignUp</Button>}
         </div>

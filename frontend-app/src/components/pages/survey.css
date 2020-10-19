@@ -7,8 +7,10 @@
 
 input[type="radio"]
 {
-    display: none;
-}
+    position: absolute;
+	opacity: 0;
+	width: 0;
+} 
 
 .star{
     cursor: pointer;

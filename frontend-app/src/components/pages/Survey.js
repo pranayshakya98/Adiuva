@@ -1,8 +1,10 @@
+
 import React from "react";
 import "./Page.css";
 import StarRating from "./StarRating";
 
 function Survey() {
+
   return (
     <div className="contact-card">
       <div className="content-box">
@@ -11,14 +13,15 @@ function Survey() {
           <h1> Survey</h1>
           <p>We value your feedback</p>
           <div className="content-mild"> 
-          <StarRating />         
+               
             <form className=" form-cardbox">
+            <StarRating /> 
                 <div className="message">
                     <div className="form-in">
                         <label htmlFor="message" className="form-label">
                         <input
                             id="message"
-                            type="text"
+                            type="paragraph"
                             name="message"
                             className="form-in"
                             placeholder="Message"
@@ -34,6 +37,7 @@ function Survey() {
         </div>
       </div>
     </div>
+  
   );
 }
 

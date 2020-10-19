@@ -8,7 +8,7 @@ function Contact() {
         <div className="content">
           <h1> Contact</h1>
           <p>We'd ❤️ to hear from you</p>
-          <div className="content-mild">
+            <div className="content-mild">
             <form className=" form-cardbox">
               <div className="form-input">
                 <label htmlFor="username" className="form-label">
