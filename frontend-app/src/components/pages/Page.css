@@ -231,7 +231,7 @@
   background-image: url("./1pic.jpg");
 }
 
-@keyframes alik {
+/*@keyframes alik {
   20% {
     background-image: url("./2pic.jpg");
   }
@@ -248,6 +248,7 @@
     background-image: url("./10pic.jpg");
   }
 }
+*/
 
 @media screen and (max-width: 960px) {
   .main-container {
@@ -303,6 +304,16 @@
   background-color: whitesmoke;
 }
 
+.form-btnna {
+  border-radius: 15px;
+  font-size: 20px;
+  margin-top: 24px;
+  height: 45px;
+  width: 160px;
+  margin-left: 30px;
+  background-color: burlywood;
+}
+
 .form-btnn:hover {
   background-color: silver;
   color: #242424;
@@ -346,10 +357,10 @@
 }
 
 @media screen and (max-width: 960px) {
-  .form-btnn: hover {
+  .form-btnn: hover 
+  {
     background-color: salmon;
     color: #242424;
-    border-radius: 0;
   }
 }
 
@@ -363,10 +374,7 @@
 input[type="radio"]
 {
   display: none;
-  text-align:left;
-  /*position: absolute;
-  opacity: 0;
-  width: 0;*/
+  
 } 
 
 .star{

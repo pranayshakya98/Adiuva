@@ -1,11 +1,12 @@
-
 import React from "react";
 import "./Page.css";
 import StarRating from "./StarRating";
+import WelcomeNavbar from '../WelcomeNavbar'; 
 
-function Survey() {
-
+function Survey() 
+{
   return (
+    <><WelcomeNavbar />
     <div className="contact-card">
       <div className="content-box">
         <div className="content">
@@ -15,10 +16,10 @@ function Survey() {
           <div className="content-mild"> 
                
             <form className=" form-cardbox">
-            <StarRating /> 
-                <div className="message">
+                <StarRating /> 
+                  <div className="message">
                     <div className="form-in">
-                        <label htmlFor="message" className="form-label">
+                      <label htmlFor="message" className="form-label">
                         <input
                             id="message"
                             type="paragraph"
@@ -26,9 +27,9 @@ function Survey() {
                             className="form-in"
                             placeholder="Message"
                         />
-                        </label>
+                      </label>
                     </div>
-                </div>
+                  </div>
               <button className="form-btn" type="submit">
                 Submit
               </button>
@@ -36,8 +37,7 @@ function Survey() {
           </div>
         </div>
       </div>
-    </div>
-  
+    </div></>
   );
 }
 
