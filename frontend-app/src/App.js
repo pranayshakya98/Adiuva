@@ -11,8 +11,10 @@ import ForgotPass from "./components/pages/ForgotPass";
 import Feed from "./components/pages/afterAuthorized/Feed";
 import Profile from "./components/pages/afterAuthorized/Profile";
 import Appointment from "./components/pages/afterAuthorized/Appointment";
-import Chat from "./components/pages/afterAuthorized/Chat";
+import Chat from "./components/pages/afterAuthorized/Chat/Chat";
+
 import CreatePost from "./components/pages/afterAuthorized/CreatePost";
+
 
 function App() {
   return (
@@ -27,10 +29,11 @@ function App() {
           <Route path="/feed" component={Feed} />
           <Route path="/profile" component={Profile} />
           <Route path="/chat" component={Chat} />
+          <Route path="/users/:userId" component={Chat} />
           <Route path="/createpost" component={CreatePost} />
           <Route path="/appointment" component={Appointment} />
-        </Switch>
-        <Footer />
+         </Switch>
+        
     </Router>
   );
 }
