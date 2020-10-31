@@ -1,15 +1,22 @@
-.app{
-   background-color: ghostwhite;
+.chat{
     height: 100vh;
-    display:grid;
-    place-items:center;
+    overflow:hidden;
+    width:100%;
+    background-color: oldlace;
+   
 }
 
-.app_body{
+.chatcard{
+    display: grid;
+    place-items: center;
+}
+
+.chatbox{
     display:flex;
-    background-color: lightgray; 
-    height: 75vh;
-    width: 75vw;
-    
+    background-color: lightgrey;
+    height:75vh;
+    width:70vw;
+    margin-top: 40px;
     box-shadow: -1px 4px 20px -6px black ;
-} 
+
+}

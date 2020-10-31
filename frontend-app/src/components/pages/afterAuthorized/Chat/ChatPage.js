@@ -10,7 +10,7 @@ import app, { db } from "../../../utils/fireApp";
 import firebase from "firebase";
 
 function ChatPage() {
-  //to keep track of input the user type
+  // to keep track of input the user type
   const [input, setInput] = useState("");
   const { userId } = useParams();
   const [userName, setUserName] = useState("");
@@ -45,9 +45,13 @@ function ChatPage() {
 
   return (
     <div className="chatpage">
+    <div className = "page">
+
       <div className="chatheader">
         <Avatar />
-        <div className="header_info">{userName}</div>
+        <div className="header_info">
+            {userName}
+        </div>
 
         <div className="headerright">
           <IconButton>
@@ -61,6 +65,7 @@ function ChatPage() {
           <IconButton>
             <VideocamIcon />
           </IconButton>
+          </div>
         </div>
       </div>
 
@@ -74,21 +79,17 @@ function ChatPage() {
             </span>
           </p>
         ))}
+        <p> her </p>
       </div>
 
       <div className="chatfooter">
-        <form>
+        
           <InsertEmoticonIcon />
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Enter a message"
-            type="text"
-          />
-          <button onClick={sendMessage} type="submit">
-            {" "}
-          </button>
+          <form>
+              <input type ="text"/>
+              <button>SEnd </button>          
         </form>
+         
       </div>
     </div>
   );
