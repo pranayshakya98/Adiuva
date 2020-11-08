@@ -6,6 +6,8 @@ import PhoneIcon from "@material-ui/icons/Phone";
 import AttachmentIcon from "@material-ui/icons/Attachment";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import { useParams } from "react-router-dom";
+import ScheduleIcon from '@material-ui/icons/Schedule';
+// import Calender from "../Calender";
 import app, { db } from "../../../utils/fireApp";
 import firebase from "firebase";
 
@@ -18,13 +20,15 @@ function ChatPage() {
 
   useEffect(() => {
     if (userId) {
+      db.collection("messages")
+      .doc(userId)
       db.collection("users")
         .doc(userId)
         .onSnapshot((snapshot) => setUserName(snapshot.data().fName));
 
-      db.collection("users")
+      db.collection("messages")
         .doc(userId)
-        .collection("messages")
+        .collection("users")
         .orderBy("timestamp", "asc")
         .onSnapshot((snapshot) =>
           setMessages(snapshot.docs.map((doc) => doc.data()))
@@ -35,8 +39,9 @@ function ChatPage() {
   const sendMessage = (e) => {
     e.preventDefault();
 
-    db.collection("users").doc(userId).collection("messages").add({
+    db.collection("messages").doc(userId).add({
       message: input,
+      // userId: 
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
 
@@ -63,7 +68,7 @@ function ChatPage() {
           </IconButton>
 
           <IconButton>
-            <VideocamIcon />
+            <ScheduleIcon  />
           </IconButton>
           </div>
         </div>

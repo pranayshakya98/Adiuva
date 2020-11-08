@@ -13,7 +13,7 @@ import Survey from "./components/pages/Survey";
 import ForgotPass from "./components/pages/ForgotPass";
 import Feed from "./components/pages/afterAuthorized/Feed";
 import Profile from "./components/pages/afterAuthorized/Profile";
-import Appointment from "./components/pages/afterAuthorized/Appointment";
+import Appointment from "./components/pages/afterAuthorized/Appointments/Appointment";
 import Chat from "./components/pages/afterAuthorized/Chat/Chat";
 import CreatePost from "./components/pages/afterAuthorized/CreatePost";
 

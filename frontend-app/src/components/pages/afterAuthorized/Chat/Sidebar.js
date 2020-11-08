@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useContext  } from "react";
 import { Avatar, IconButton } from "@material-ui/core";
 import { SearchOutlined } from "@material-ui/icons";
 import "./Sidebar.css";
@@ -7,10 +7,22 @@ import ChatIcon from "@material-ui/icons/Chat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SidebarChat from "./SidebarChat";
 import app, { db } from "../../../utils/fireApp";
+import { AuthProvider, AuthContext } from "../../../utils/fireAuth";
+
 
 function Sidebar() {
-  const [users, setUsers] = useState([]);
 
+  
+  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState([]);
+  
+  // useEffect(() => {
+  //   firebase.auth().onAuthStateChanged(function(cuser)
+    
+  // )})
+
+
+  
   useEffect(() => {
     db.collection("users").onSnapshot((snapshot) =>
       setUsers(
@@ -26,7 +38,9 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="header">
+      {user}
         <Avatar />
+        
         <div className="headerRight">
           <IconButton>
             <MoreVertIcon />
@@ -48,6 +62,8 @@ function Sidebar() {
             fName={user.data.fName}
             lName={user.data.lName}
           />
+      
+          
         ))}
       </div>
     </div>

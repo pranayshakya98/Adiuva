@@ -18,6 +18,8 @@ export const AuthProvider = ({ children }) => {
         return <> Loading...</>
     }
 
+    
+
     return (
         <AuthContext.Provider
             value={{

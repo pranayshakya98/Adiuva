@@ -1,7 +1,6 @@
 // Import all the required packages
 import React, { useCallback } from "react";
 import WelcomeNavbar from '../WelcomeNavbar';
-import { Redirect } from 'react-router';
 import app from '../utils/fireApp';
 import "./Page.css";
 import { Link } from "react-router-dom";
@@ -9,12 +8,10 @@ import { Link } from "react-router-dom";
 // Function to process login backend and frontend
 const Login = ({ history }) => {
     // Check if the user is already logged in
-    app.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            // Redirecting the user already logged in
-            return <Redirect push to="/feed"/>;
-        }
-    });
+    if (app.auth().currentUser && app.auth().currentUser.emailVerified) {
+        // Redirecting the user already logged in
+        history.push("/feed");
+    };
 
     // Callback function to log in the user using email and password provided
     const onSubmitHandler = useCallback(
@@ -25,8 +22,15 @@ const Login = ({ history }) => {
             try {
                 await app
                     .auth()
-                    .signInWithEmailAndPassword(email.value, password.value);
-                history.push("/feed");
+                    .signInWithEmailAndPassword(email.value, password.value)
+                    .then((data) => {
+                        if (app.auth().currentUser.emailVerified){
+                            history.push("/feed");
+                        }
+                        else {
+                            alert("Your email is not verified. Please verify your email first.");
+                        }
+                    });
             } catch (err) {
                 alert(err);
             }
