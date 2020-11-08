@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./ChatPage.css";
-import { Avatar, IconButton } from "@material-ui/core";
+import { Avatar, IconButton,Button } from "@material-ui/core";
 import VideocamIcon from "@material-ui/icons/Videocam";
 import PhoneIcon from "@material-ui/icons/Phone";
 import AttachmentIcon from "@material-ui/icons/Attachment";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import { useParams } from "react-router-dom";
 import ScheduleIcon from '@material-ui/icons/Schedule';
-// import Calender from "../Calender";
+import Choose from "./Choose"
 import app, { db } from "../../../utils/fireApp";
 import firebase from "firebase";
 
@@ -48,6 +48,8 @@ function ChatPage() {
     setInput("");
   };
 
+  const [showSearch, setShowSearch] = useState(false);
+
   return (
     <div className="chatpage">
     <div className = "page">
@@ -67,11 +69,12 @@ function ChatPage() {
             <PhoneIcon />
           </IconButton>
 
-          <IconButton>
-            <ScheduleIcon  />
-          </IconButton>
-          </div>
+          <div className = 'search'>
+            {showSearch && <Choose/>}
+              <ScheduleIcon onClick = {()=> setShowSearch(!showSearch)}> </ScheduleIcon>
+          </div>         
         </div>
+      </div>
       </div>
 
       <div className="chatbody">
@@ -95,7 +98,8 @@ function ChatPage() {
               <button>SEnd </button>          
         </form>
          
-      </div>
+      
+    </div>
     </div>
   );
 }
