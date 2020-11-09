@@ -48,7 +48,7 @@ function ChatPage() {
     setInput("");
   };
 
-  const [showSearch, setShowSearch] = useState(false);
+
   const [openPopup, setOpenPopup] = useState(false);
 
   return (

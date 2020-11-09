@@ -1,4 +1,4 @@
-import React, { useState, useEffect , useContext  } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Avatar, IconButton } from "@material-ui/core";
 import { SearchOutlined } from "@material-ui/icons";
 import "./Sidebar.css";
@@ -8,16 +8,12 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SidebarChat from "./SidebarChat";
 import app, { db } from "../../../utils/fireApp";
 
-
-
 function Sidebar() {
-
-  
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState([]);
-  
+  const userID = app.auth().currentUser.uid;
+  const userName = app.auth().currentUser.fName;
 
-  
   useEffect(() => {
     db.collection("users").onSnapshot((snapshot) =>
       setUsers(
@@ -25,25 +21,17 @@ function Sidebar() {
           id: doc.id,
 
           data: doc.data(),
-
         }))
       )
     );
   }, []);
 
- 
- 
   return (
     <div className="sidebar">
       <div className="header">
-      {user}
         <Avatar />
-        
-        <div className="headerRight">
-          <IconButton>
-            <MoreVertIcon />
-          </IconButton>
-        </div>
+
+        <div className="headerRight">{userName}</div>
       </div>
 
       <div className="search">
@@ -53,26 +41,17 @@ function Sidebar() {
         </div>
       </div>
 
-       
-     
       <div className="sidecontact">
         {users.map((user) => (
-          
-          
           <SidebarChat
-            
-            id = {user.id}
+            id={user.id}
             fName={user.data.fName}
             lName={user.data.lName}
           />
-      
-          
         ))}
-        
       </div>
     </div>
   );
-               
 }
 
 export default Sidebar;
