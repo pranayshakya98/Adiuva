@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import DateTimePicker from "react-datetime-picker";
+import { Avatar, IconButton, Button } from "@material-ui/core";
+import "./Choose.css";
 
-function Choose() {
+function Time() {
   const [value, onChange] = useState(new Date());
   return (
-    <div>
+    <div className="choose">
       <DateTimePicker onChange={onChange} value={value} />
+      <br></br>
+      <button className="button_cl"> Submit </button>
     </div>
   );
 }
 
-export default Choose;
+export default Time;
