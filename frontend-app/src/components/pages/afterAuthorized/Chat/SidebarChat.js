@@ -7,6 +7,12 @@ import app, { db } from "../../../utils/fireApp";
 function SidebarChat({ id, fName, lName }) {
   const userID = app.auth().currentUser.uid;
   const [seed, setSeed] = useState("");
+  
+
+  useEffect(() => {
+    setSeed(Math.floor(Math.random() * 1000));
+  }, []);
+
 
   useEffect(() => {
     setSeed(Math.floor(Math.random() * 1000));

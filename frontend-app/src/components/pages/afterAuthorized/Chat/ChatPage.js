@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./ChatPage.css";
 import { Avatar, IconButton, Button } from "@material-ui/core";
-import VideocamIcon from "@material-ui/icons/Videocam";
 import PhoneIcon from "@material-ui/icons/Phone";
 import AttachmentIcon from "@material-ui/icons/Attachment";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
@@ -16,23 +15,14 @@ function ChatPage() {
   // to keep track of input the user type
   const [input, setInput] = useState("");
   const { userId } = useParams();
-  const [userName, setUserName] = useState("");
+  const [userName, setName] = useState("");
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     if (userId) {
-      db.collection("messages").doc(userId);
       db.collection("users")
         .doc(userId)
-        .onSnapshot((snapshot) => setUserName(snapshot.data().fName));
-
-      db.collection("messages")
-        .doc(userId)
-        .collection("users")
-        .orderBy("timestamp", "asc")
-        .onSnapshot((snapshot) =>
-          setMessages(snapshot.docs.map((doc) => doc.data()))
-        );
+        .onSnapshot((snapshot) => setName(snapshot.data().fName));
     }
   }, [userId]);
 
@@ -48,7 +38,6 @@ function ChatPage() {
     setInput("");
   };
 
-
   const [openPopup, setOpenPopup] = useState(false);
 
   return (
@@ -56,7 +45,10 @@ function ChatPage() {
       <div className="page">
         <div className="chatheader">
           <Avatar />
-          <div className="header_info">{userName}</div>
+          <div className="header_info">
+            {" "}
+             {userId}
+          </div>
 
           <div className="headerright">
             <IconButton>

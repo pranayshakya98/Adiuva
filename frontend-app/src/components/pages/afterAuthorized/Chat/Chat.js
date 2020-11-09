@@ -1,4 +1,10 @@
 import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import Sidebar from "./Sidebar";
 import ChatPage from "./ChatPage";
 import MainNavbar from "../../../MainNavbar";
@@ -25,8 +31,11 @@ const Chat = ({ history }) => {
 
     <div className = "chatcard">
     <div className ="chatbox">
+    
     <Sidebar/>
+    
     <ChatPage/>
+  
     
     </div>
     </div>
