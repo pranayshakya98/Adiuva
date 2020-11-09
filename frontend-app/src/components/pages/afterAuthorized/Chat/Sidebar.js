@@ -12,7 +12,12 @@ function Sidebar() {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState([]);
   const userID = app.auth().currentUser.uid;
-  const userName = app.auth().currentUser.fName;
+
+  // useEffect(() => {
+  // db.collection("users").doc(userID).get()
+  // .then((doc) => {
+  // const userName = doc.data().fName + ' ' + doc.data().lName;
+  // }}))                                    
 
   useEffect(() => {
     db.collection("users").onSnapshot((snapshot) =>
@@ -29,9 +34,14 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="header">
+        
         <Avatar />
+        
+        
 
-        <div className="headerRight">{userName}</div>
+        <div className="headerRight">
+        
+         </div>
       </div>
 
       <div className="search">
