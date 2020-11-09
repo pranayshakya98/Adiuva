@@ -1,12 +1,38 @@
-import React, { useCallback } from "react";
+// Importing firebase app, navbar, and react components
+import React, { useCallback, useState } from "react";
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import WelcomeNavbar from '../WelcomeNavbar';
 import app, { db } from '../utils/fireApp';
 import "./Page.css";
 
+<<<<<<< HEAD
+=======
+// Function to complete signup activity
+>>>>>>> 485595af7b89ecdc0fc57b5322cfb8d27ca340dd
 const Signup = ({ history }) => {
+    
+    // Check if the user is already logged in
+    if (app.auth().currentUser && app.auth().currentUser.emailVerified) {
+        // Redirecting the user already logged in
+        history.push("/feed");
+    };
+    
+    const [open, setOpen] = useState(false);
+
+    const handleClose = () => {
+        setOpen(false);
+        history.push("/login");
+    };
+    
+    // On click of submit buttom, the callback function if used to validate the input and signup
     const onSubmitHandler = useCallback(
         async event => {
             event.preventDefault();
+            // form data sheme
             const {
                 fName,
                 mName,
@@ -20,9 +46,11 @@ const Signup = ({ history }) => {
             } = event.target.elements;
             
             let errors = '';
-
+            // regular expression for emails
             const emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    
+            
+            // Validating all the use inputs and storeing respective error
+
             if (fName.value.trim() === '') {
                 errors = 'First Name cannot be blank';
             }
@@ -61,11 +89,16 @@ const Signup = ({ history }) => {
             else {
                 try {
                     let newUserID;
+                    // Creating user using firebase auth() method with email and password
                     await app
                         .auth()
                         .createUserWithEmailAndPassword(email.value, password.value)
                         .then((data) => {
                             newUserID = data.user.uid;
+                            app.auth().currentUser.sendEmailVerification()
+                            .then(() => {
+                                setOpen(true);
+                            })
                         });
                     const newUser = {
                         fName: fName.value,
@@ -78,13 +111,13 @@ const Signup = ({ history }) => {
                         userID: newUserID,
                         registeredAt: new Date().toISOString(),
                     };
+                    // Pushing the user information once user is signed up successfully to database
                     db.doc(`/users/${newUser.userID}`).set(newUser);
-                    history.push("/feed");
                 } catch (err) {
                     alert (err);
                 }
             }
-        }, [history]
+        }
     );
 
     return (
@@ -154,7 +187,11 @@ const Signup = ({ history }) => {
               </div>
               
               <div className="form-fill">
+<<<<<<< HEAD
                 <label htmlFor="password2" className="form-label">
+=======
+                <label htmlFor="re_password" className="form-label">
+>>>>>>> 485595af7b89ecdc0fc57b5322cfb8d27ca340dd
                   <input
                     id="re_password"
                     type="password"
@@ -178,7 +215,7 @@ const Signup = ({ history }) => {
               </div>
               
               <div className="form-fill">
-                <label htmlFor="state" className="form-label">
+                <label htmlFor="stateName" className="form-label">
                   <input
                     id="stateName"
                     type="text"
@@ -192,7 +229,7 @@ const Signup = ({ history }) => {
                 <label htmlFor="zipcode" className="form-label">
                   <input
                     id="zipcode"
-                    type="text"
+                    type="number"
                     name="zipcode"
                     className="form-fill"
                     placeholder="Zipcode*"
@@ -203,6 +240,23 @@ const Signup = ({ history }) => {
               <button className="form-btnn" type="submit">
                 Sign Up
               </button>
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Thank you for signing up. Email-verification link has been sent to your email. Please check your email and verify it before signing in.
+                    </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        Ok
+                    </Button>
+                    </DialogActions>
+                </Dialog>
             </form>
           </div>
         </div>
