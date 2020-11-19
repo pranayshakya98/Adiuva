@@ -11,6 +11,7 @@ import app, { db } from "../../../utils/fireApp";
 function Sidebar() {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState([]);
+  const [userInfo, setUinfo] = useState("");
   const userID = app.auth().currentUser.uid;
 
   useEffect(() => {
@@ -25,11 +26,12 @@ function Sidebar() {
     );
   }, []);
 
+
   return (
     <div className="sidebar">
       <div className="header">
         <Avatar />
-
+        {userInfo.fName} {userInfo.lName}
         <div className="headerRight"></div>
       </div>
 
@@ -42,7 +44,7 @@ function Sidebar() {
 
       <div className="sidecontact">
         {users.map((user) => (
-          <SidebarChat
+          <SidebarChat 
             id={user.id}
             fName={user.data.fName}
             lName={user.data.lName}

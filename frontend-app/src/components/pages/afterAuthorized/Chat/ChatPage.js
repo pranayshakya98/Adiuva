@@ -15,40 +15,34 @@ function ChatPage() {
   // to keep track of input the user type
   const [input, setInput] = useState("");
   const { userId } = useParams();
-  const [userName, setName] = useState("");
+  const [userName, setuserName] = useState("");
   const [messages, setMessages] = useState([]);
+  const userID = app.auth().currentUser.uid;
+  const [openPopup, setOpenPopup] = useState(false);
 
   useEffect(() => {
     if (userId) {
       db.collection("users")
         .doc(userId)
-        .onSnapshot((snapshot) => setName(snapshot.data().fName));
+        .onSnapshot((snapshot) =>
+          setuserName(snapshot.data().fName + " " + snapshot.data().lName)
+        );
     }
   }, [userId]);
 
+  
+
   const sendMessage = (e) => {
     e.preventDefault();
-
-    db.collection("messages").doc(userId).add({
-      message: input,
-      // userId:
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    });
-
-    setInput("");
+    console.log("you typed ....", input);
   };
-
-  const [openPopup, setOpenPopup] = useState(false);
 
   return (
     <div className="chatpage">
       <div className="page">
         <div className="chatheader">
           <Avatar />
-          <div className="header_info">
-            {" "}
-             {userId}
-          </div>
+          <div className="header_info"> {userName}</div>
 
           <div className="headerright">
             <IconButton>
@@ -71,23 +65,21 @@ function ChatPage() {
       </div>
 
       <div className="chatbody">
-        {messages.map((message) => (
-          <p className={`chat_message ${true && "chat_receiver"}`}>
-            <span className="chatname">{message.name}</span>
-            {message.message}
-            <span className="chattime">
-              {new Date(message.timestamp?.toDate()).toUTCString()}
-            </span>
-          </p>
-        ))}
-        <p> her </p>
+        <p className={`chat_message ${true && "chat_receiver"}`}> hi guys </p>
       </div>
 
       <div className="chatfooter">
         <InsertEmoticonIcon />
         <form>
-          <input type="text" />
-          <button>SEND </button>
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Type a message"
+            type="text"
+          />
+          <button onClick={sendMessage} type="submit">
+            SEND{" "}
+          </button>
         </form>
       </div>
     </div>

@@ -1,14 +1,14 @@
 import React from "react";
 import Sidebar from "./Sidebar";
+import Welcome from "./Welcome";
 import ChatPage from "./ChatPage";
-import ChatP from "./ChatP";
 import MainNavbar from "../../../MainNavbar";
 import "./Chat.css";
 import app from "../../../utils/fireApp";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import app, {db} from '../../../utils/fireApp';
 
-const Chat = ({ history }) => {
+const ChatP = ({ history }) => {
   // Check if the user is logged in
   if (!app.auth().currentUser) {
     // Redirecting the user to log-in if logged out
@@ -22,11 +22,11 @@ const Chat = ({ history }) => {
       <div className="chatcard">
         <div className="chatbox">
           <Sidebar />
-                <ChatPage />
+          <Welcome />
         </div>
       </div>
     </div>
   );
 };
 
-export default Chat;
+export default ChatP;

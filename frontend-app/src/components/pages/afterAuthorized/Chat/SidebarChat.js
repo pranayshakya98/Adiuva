@@ -20,7 +20,7 @@ function SidebarChat({ id, fName, lName }) {
 
   if (id != userID) {
     return (
-      <Link to={`/chat/users/${id}`}>
+      <Link to={`/chat/${id}`}>
         <div className="sidebarchat">
           <Avatar src={`https://avatars.dicebear.com/api/${seed}.svg`} />
 
