@@ -26,6 +26,13 @@ function Sidebar() {
     );
   }, []);
 
+  useEffect(() => {
+    if (userID) {
+      db.collection("users")
+        .doc(userID)
+        .onSnapshot((snapshot) => setUinfo(snapshot.data()));
+    }
+  }, [userID]);
 
   return (
     <div className="sidebar">

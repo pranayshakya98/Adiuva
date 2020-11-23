@@ -30,12 +30,41 @@ function ChatPage() {
     }
   }, [userId]);
 
-  
-
   const sendMessage = (e) => {
     e.preventDefault();
     console.log("you typed ....", input);
+    setInput("");
+
+      const messageObj = {
+        message: input,
+        senderId : userID,
+        receiverId:userId,
+        receivername: userName,
+        isView: true,
+        timestamp: new Date()
+
+      }
+      db.collection("chat-users").doc(userId).collection(userID).add(
+        messageObj,
+      );
+
+      // console.log("heyhey", messageObj);
   };
+
+
+  useEffect(() => {
+
+    db.collection("chat-users").doc(userId).collection(userID).orderBy('timestamp' , 'asc')
+    .onSnapshot(snapshot => (
+    setMessages(snapshot.docs.map(doc => doc.data()))
+    ))
+   
+  }, []);
+ 
+
+
+    
+  
 
   return (
     <div className="chatpage">
@@ -65,8 +94,19 @@ function ChatPage() {
       </div>
 
       <div className="chatbody">
-        <p className={`chat_message ${true && "chat_receiver"}`}> hi guys </p>
+        {messages.map((message) => (
+          <p className={`chat_message ${true && "chat_receiver"}`}>
+            {" "}
+            {message.messages}{" "}
+          </p>
+        ))}
       </div>
+
+      {/* 
+      <div className="chatbody">
+     
+        <p className={`chat_message ${true && "chat_receiver"}`}> hello </p>
+      </div> */}
 
       <div className="chatfooter">
         <InsertEmoticonIcon />
