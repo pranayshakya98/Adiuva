@@ -6,7 +6,7 @@ import AttachmentIcon from "@material-ui/icons/Attachment";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import { useParams } from "react-router-dom";
 import ScheduleIcon from "@material-ui/icons/Schedule";
-import Time from "./Choose";
+import Time from "./Time";
 import app, { db } from "../../../utils/fireApp";
 import firebase from "firebase";
 import Popup from "./Popup";
@@ -17,6 +17,7 @@ function ChatPage() {
   const { userId } = useParams();
   const [userName, setuserName] = useState("");
   const [messages, setMessages] = useState([]);
+  const [userInfo, setUinfo] = useState("");
   const userID = app.auth().currentUser.uid;
   const [openPopup, setOpenPopup] = useState(false);
 
@@ -27,45 +28,71 @@ function ChatPage() {
         .onSnapshot((snapshot) =>
           setuserName(snapshot.data().fName + " " + snapshot.data().lName)
         );
+
+        db.collection("users")
+        .doc(userID)
+        .onSnapshot((snapshot) => setUinfo(snapshot.data()));
+
+
+     
+        //fetching all the fields
+        
+      db.collection("chat-users")
+        .doc(userId)
+        .collection(userID)
+        .orderBy("timestamp", "asc")
+        .onSnapshot((snapshot) =>
+          setMessages(snapshot.docs.map((doc) => 
+          doc.data()))
+        );
+
+        db.collection("chat-users")
+        .doc(userID)
+        .collection(userId)
+        .orderBy("timestamp", "asc")
+        .onSnapshot((snapshot) =>
+          setMessages(snapshot.docs.map((doc) => 
+          doc.data()))
+        );
+
+            
     }
   }, [userId]);
+
+
+
+  console.log("you have" , messages);
+ 
+
 
   const sendMessage = (e) => {
     e.preventDefault();
     console.log("you typed ....", input);
     setInput("");
 
-      const messageObj = {
-        message: input,
-        senderId : userID,
-        receiverId:userId,
-        receivername: userName,
-        isView: true,
-        timestamp: new Date()
+    const messageObj = {
+      message: input,
+      senderId: userID,
+      receiverId: userId,
+      sendername: userInfo.fName + userInfo.lName ,
+      receivername: userName,
+      isView: true,
+      timestamp: new Date(),
+    };
 
-      }
-      db.collection("chat-users").doc(userId).collection(userID).add(
-        messageObj,
-      );
-
-      // console.log("heyhey", messageObj);
-  };
-
-
-  useEffect(() => {
-
-    db.collection("chat-users").doc(userId).collection(userID).orderBy('timestamp' , 'asc')
-    .onSnapshot(snapshot => (
-    setMessages(snapshot.docs.map(doc => doc.data()))
-    ))
-   
-  }, []);
- 
+    
+    //Pushing all the fields to the database
+    db.collection("chat-users").doc(userId).collection(userID).add(
+      messageObj,
+    );  
 
 
     
+    
+    
+  };
   
-
+  
   return (
     <div className="chatpage">
       <div className="page">
@@ -94,19 +121,18 @@ function ChatPage() {
       </div>
 
       <div className="chatbody">
-        {messages.map((message) => (
-          <p className={`chat_message ${true && "chat_receiver"}`}>
-            {" "}
-            {message.messages}{" "}
-          </p>
-        ))}
+        {messages.map((message) => 
+        (
+          <p className={`chat_message ${message.senderId === userID && "chat_receiver"}`}>
+            <span className="chatname">{message.name}</span>
+            {message.message}
+          </p>)          
+          
+        )}
       </div>
 
-      {/* 
-      <div className="chatbody">
      
-        <p className={`chat_message ${true && "chat_receiver"}`}> hello </p>
-      </div> */}
+   
 
       <div className="chatfooter">
         <InsertEmoticonIcon />
