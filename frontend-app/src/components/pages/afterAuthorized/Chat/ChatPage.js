@@ -9,7 +9,7 @@ import ScheduleIcon from "@material-ui/icons/Schedule";
 import Time from "./Time";
 import app, { db } from "../../../utils/fireApp";
 import firebase from "firebase";
-import Popup from "./Popup";
+//import Popup from "./Popup";
 
 function ChatPage() {
   // to keep track of input the user type
@@ -17,6 +17,7 @@ function ChatPage() {
   const { userId } = useParams();
   const [userName, setuserName] = useState("");
   const [messages, setMessages] = useState([]);
+  const [messages2, setMessages2] = useState([]);
   const [userInfo, setUinfo] = useState("");
   const userID = app.auth().currentUser.uid;
   const [openPopup, setOpenPopup] = useState(false);
@@ -51,7 +52,7 @@ function ChatPage() {
         .collection(userId)
         .orderBy("timestamp", "asc")
         .onSnapshot((snapshot) =>
-          setMessages(snapshot.docs.map((doc) => 
+          setMessages2(snapshot.docs.map((doc) => 
           doc.data()))
         );
 
@@ -59,8 +60,8 @@ function ChatPage() {
     }
   }, [userId]);
 
-
-
+var allMsg = messages.concat(messages2);
+allMsg.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : (a.timestamp === b.timestamp) ? 0 : -1);
   console.log("you have" , messages);
  
 
@@ -86,9 +87,6 @@ function ChatPage() {
       messageObj,
     );  
 
-
-    
-    
     
   };
   
@@ -110,9 +108,7 @@ function ChatPage() {
             </IconButton>
 
             <div className="search">
-              <Popup openPopup={openPopup} setOpenPopup={setOpenPopup}>
-                <Time />
-              </Popup>
+
 
               <ScheduleIcon onClick={() => setOpenPopup(true)}> </ScheduleIcon>
             </div>
@@ -121,7 +117,7 @@ function ChatPage() {
       </div>
 
       <div className="chatbody">
-        {messages.map((message) => 
+        {allMsg.map((message) => 
         (
           <p className={`chat_message ${message.senderId === userID && "chat_receiver"}`}>
             <span className="chatname">{message.name}</span>
