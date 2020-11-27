@@ -127,9 +127,6 @@ allMsg.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : (a.timestamp === b.times
         )}
       </div>
 
-     
-   
-
       <div className="chatfooter">
         <InsertEmoticonIcon />
         <form>
