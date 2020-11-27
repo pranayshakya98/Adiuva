@@ -36,7 +36,7 @@ function ChatPage() {
 
      
         //fetching all the fields
-        
+
       db.collection("chat-users")
         .doc(userId)
         .collection(userID)
@@ -54,6 +54,13 @@ function ChatPage() {
           setMessages(snapshot.docs.map((doc) => 
           doc.data()))
         );
+
+        // db.collection("chat-users")
+        // .orderBy("timestamp", "asc")
+        // .onSnapshot((snapshot) =>
+        //   setMessages(snapshot.docs.map((doc) => 
+        //   doc.data()))
+        // );
 
             
     }
@@ -82,9 +89,14 @@ function ChatPage() {
 
     
     //Pushing all the fields to the database
+    //userId = receiver  userID = sender
     db.collection("chat-users").doc(userId).collection(userID).add(
       messageObj,
     );  
+
+    // db.collection("messages").add(
+    //   messageObj,
+    // );  
 
 
     
