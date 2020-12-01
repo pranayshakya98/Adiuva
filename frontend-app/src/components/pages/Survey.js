@@ -12,14 +12,13 @@ const Survey = ({ history }) => {
         // Redirecting the user already logged in
         history.push("/feed");
     };
-
+// using useState for rating, hover, errors, message, success message to store and update
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
-
     const [error, setError] = useState("");
     const [msg, setMsg] = useState("");
     const [successMsg, setSuccessMsg] = useState("");
-
+//using call back function to process pushing data to firebase
     const onSubmitHandler = useCallback(
         async event => {
             event.preventDefault();
@@ -29,7 +28,6 @@ const Survey = ({ history }) => {
                 setSuccessMsg("");
             }
             else {
-                // Using firebase auth to login and catching error at same time 
                 try {
                     const newRating = {
                         Star: starRating.value,

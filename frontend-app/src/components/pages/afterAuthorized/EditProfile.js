@@ -4,7 +4,7 @@ import "./EditProfile.css";
 import app, { db } from '../../utils/fireApp';
 
 
-
+// function to edit profile detail
 function EditProfile({ history }) {
 
     if (!(app.auth().currentUser)) {
@@ -12,7 +12,6 @@ function EditProfile({ history }) {
         history.push("/login");
     };
     const userID = app.auth().currentUser.uid;
-
     const [error, setError] = useState("");
 
      // On click of submit buttom, the callback function if used to validate the input and signup
@@ -26,10 +25,7 @@ function EditProfile({ history }) {
                 about,
                 zipcode
             } = event.target.elements;
-            
-    
             // Validating all the use inputs and storeing respective error
-
                 try {
                     const newUser = {
                         city: city.value.trim(),

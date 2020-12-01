@@ -1,11 +1,13 @@
 // importing all the required packages and components
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import Navbar from "../../MainNavbar";
 import "../Page.css";
 import firebase from 'firebase';
 import app, { db } from '../../utils/fireApp';
 
 const DeleteUser = ({ history }) => {
+    const userid = app.auth().currentUser.uid;
+    const [isPost, setIsPost] = useState(false);
     // action handler when user provide email and password to delete account
     const onSubmitHandler = useCallback(
         async event => {
@@ -17,21 +19,45 @@ const DeleteUser = ({ history }) => {
             } = event.target.elements;
             // getting current user to be deleted
             var user = firebase.auth().currentUser;
-            const uid = app.auth().currentUser.uid;
+            
+            db.collection("dPosts").where("userID", "==", userid).get()
+            .then((data) => {
+                if (data.exists){
+                    setIsPost(true);
+                }
+            });
             var credential =firebase.auth.EmailAuthProvider.credential(
                 email.value, 
                 password.value
             );
             try {
-                // validating the credential and carrying the deletion of the user
+            db.collection("users").doc(userid).delete()
+                    .then(() => {
+                        if (isPost){
+                            db.collection("dPosts").where("userID", "==", userid).get()
+                            .then((doc)=> {
+                                db.collection("dPosts").doc(doc.data().id).delete()
+                                .then(() => {
+                                    
+                                })
+                                .catch(function(error) {
+                                    alert(error);
+                                });
+                            })
+                            .catch(function(error) {
+                                alert(error);
+                            });
+                        }
+                    })
+                    .catch(function(error) {
+                        alert(error);
+                    });
+                //validating the credential and carrying the deletion of the user
                 user.reauthenticateWithCredential(credential).then(function() {
                     user.delete()
                     .then(function() {
-                        db.doc(`/users/${uid}`).delete()
-                        .then(() => {
-                            // on success redirecting to confirmation page
-                            history.push("/pagedeleted");
-                        })
+                        // on success redirecting to confirmation page
+                        history.push("/pagedeleted");
                     })
                     .catch(function(error) {
                         alert(error);

@@ -102,7 +102,7 @@ class Feed extends Component {
                     />
                     <b>All</b>
                 </label>
-                <br /><br />
+                <br />
                 <label className="selectPostType">
                     <input 
                     id="post-type"
@@ -114,7 +114,7 @@ class Feed extends Component {
                     />
                      <b>Donation Request</b>
                 </label>
-                <br /><br />
+                <br />
                 <label className="selectPostType">
                     <input 
                     id="post-type"

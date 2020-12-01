@@ -3,26 +3,25 @@ import WelcomeNavbar from '../WelcomeNavbar';
 import { db } from '../utils/fireApp';
 import "./Page.css";
 import app from '../utils/fireApp';
-import { rgbToHex } from '@material-ui/core';
-
+// function to handle contact us operation
 const Contact = ({ history }) => {
-    
     // Check if the user is already logged in
     if (app.auth().currentUser && app.auth().currentUser.emailVerified) {
         // Redirecting the user already logged in
         history.push("/feed");
     };
-
+// using useState for name, email, errors, message, success message to store and update
     const [error, setError] = useState("");
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [msg, setMsg] = useState("");
     const [successMsg, setSuccessMsg] = useState("");
-
+//using call back function push information to database
     const onSubmitHandler = useCallback(
         async event => {
             event.preventDefault();
             const { name, email, message } = event.target.elements;
+            // validating inputs from error and setting errors
             if (email.value == "") {
                 setError("Email cannot be blank.");
                 setSuccessMsg("");

@@ -14,7 +14,9 @@ import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import BlockIcon from '@material-ui/icons/Block';
 import './Profile.css';
 
+// Class to display profile component
 class Profile extends Component {
+    // using state for user detail, posts
     state = {
         user: {
             fName: "",
@@ -31,9 +33,7 @@ class Profile extends Component {
         },
         dPosts: null
     }
-    componentDidMount(){
-
-    };
+    // render the component
     render () {
         const { history } = this.props;
         if (!(app.auth().currentUser)) {
@@ -135,7 +135,7 @@ class Profile extends Component {
             <div class="row py-5 px-4">
                 <div class="col-md-5 mx-auto">
                     <div class="bg-white">
-                        <div class="px-4 pt-0 pb-4 cover">
+                        <div class="px-4 pt-0 pb-4 cover-profile">
                             <div class="media align-items-end profile-head">
                                 <div class="profile mr-3">
                                     <img src={this.state.user.imgURL} alt="Profile" width="200" class="rounded mb-2 img-thumbnail"></img>

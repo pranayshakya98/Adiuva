@@ -12,7 +12,7 @@
     transform: translateY(5rem)
 }
 
-.cover {
+.cover-profile {
     background: #654ea3;
     background: linear-gradient(to right, #cacc43, #72b1e4);
     background-size: cover;
