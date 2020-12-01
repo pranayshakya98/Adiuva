@@ -106,6 +106,7 @@ const Signup = ({ history }) => {
                         userID: newUserID,
                         imgURL: "",
                         about: "",
+                        verification: false,
                         registeredAt: new Date().toISOString(),
                     };
                     // Pushing the user information once user is signed up successfully to database

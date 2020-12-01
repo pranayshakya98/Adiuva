@@ -1,0 +1,259 @@
+.content-editprofile {
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  .content {
+    min-width: 40%;
+    min-height: 30%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 50px #555;
+    background-color: transparent;
+    align-items: center;
+  }
+  
+  
+  .form-input {
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 280px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    outline: none;
+    height: 50px;
+  }
+  
+  .form-inp {
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 280px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    outline: none;
+    height: 50px;
+  }
+  
+  .form-in {
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 280px;
+    padding: 10px 10px;
+    border-radius: 20px;
+    height: 180px;
+    outline: none;
+  }
+  
+  .form-btn {
+    border-radius: 30px;
+    font-size: 25px;
+    margin-top: 20px;
+    height: 60px;
+    width: 150px;
+    margin-left: 30px;
+    background-color: whitesmoke;
+  }
+  
+  .form-btn1 {
+    border-radius: 30px;
+    font-size: 25px;
+    margin-top: 50px;
+    height: 100px;
+    width: 200px;
+    margin-left: 30px;
+    background-color: whitesmoke;
+  }
+  
+  .form-btn:hover {
+    background-color: rgb(197, 138, 138);
+    color: #242424;
+    border-radius: 10;
+  }
+  
+  
+  .app{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+  }
+  
+  
+  @media screen and (max-width: 960px) {
+    .content-box {
+      min-height: 100vh;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  
+  @media screen and (max-width: 960px) {
+    .content {
+      margin-top: 25px;
+      margin-right: 15px;
+      width: 300px;
+      height: 490px;
+      display: flex;
+      flex-direction: column;
+      padding: 10px 30px;
+      border-radius: 10px;
+      box-shadow: 0px 10px 50px #555;
+      background-color: transparent;
+      align-items: center;
+    }
+    .content>h1 {
+        text-align: center;
+        font-size: 2em;
+      }
+  }
+  
+  @media screen and (max-width: 960px) {
+    .form-input {
+      margin-top: 9px;
+      margin-left: 6px;
+      width: 180px;
+      padding: 10px 10px;
+      border-radius: 5px;
+      outline: none;
+      height: 40px;
+    }
+  }
+  
+  @media screen and (max-width: 960px) {
+    .form-inp {
+      margin-top: 9px;
+      margin-left: 6px;
+      width: 180px;
+      padding: 10px 10px;
+      border-radius: 5px;
+      outline: none;
+      height: 40px;
+    }
+  }
+  
+  @media screen and (max-width: 960px) {
+    .form-in {
+      margin-top: 9px;
+      margin-left: 6px;
+      width: 180px;
+      padding: 10px 10px;
+      border-radius: 5px;
+      outline: none;
+      height: 170px;
+    }
+  }
+  
+  @media screen and (max-width: 960px) {
+    .form-btn {
+      border-radius: 30px;
+      font-size: 25px;
+      margin-top: 20px;
+      height: 40px;
+      width: 130px;
+      margin-left: 30px;
+      background-color: whitesmoke;
+    }
+  }
+  
+  @media screen and (max-width: 960px) {
+    .form-btn:hover {
+      background-color: rgb(197, 138, 138);
+      color: #242424;
+      border-radius: 10;
+    }
+  }
+  
+  .main-container {
+    text-align: center;
+  }
+ 
+  
+  /* Sign in */
+  
+  .form-fill1 {
+    margin-top: 6px;
+    margin-left: 10px;
+    width: 280px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    outline: none;
+    height: 35px;
+  }
+
+  
+  .form-btnn {
+    border-radius: 15px;
+    font-size: 20px;
+    margin-top: 24px;
+    height: 45px;
+    width: 160px;
+    margin-left: 30px;
+    background-color: whitesmoke;
+  }
+  
+  .form-btnn:hover {
+    background-color: silver;
+    color: #242424;
+    border-radius: 0;
+  }
+  
+  @media screen and (max-width: 960px) {
+    .form-fill1 {
+      margin-top: 8px;
+      margin-left: 6px;
+      width: 180px;
+      padding: 10px 10px;
+      border-radius: 5px;
+      outline: none;
+      height: 28px;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    .form-btnn {
+      border-radius: 15px;
+      font-size: 16px;
+      margin-top: 24px;
+      height: 30px;
+      width: 100px;
+      margin-left: 30px;
+      background-color: whitesmoke;
+    }
+  }
+  
+  @media screen and (max-width: 960px) {
+    .form-btnn:hover {
+      background-color: salmon;
+      color: #242424;
+      border-radius: 0;
+    }
+  }
+  
+  .form-btnDA {
+    border-radius: 30px;
+    font-size: 25px;
+    margin-top: 50px;
+    height: 100px;
+    width: 200px;
+    margin-left: 30px;
+    background-color: rgb(255, 0, 0);
+  }
+  
+  .form-btnDA:hover {
+    background-color: rgb(255, 75, 75);
+    color: #242424;
+    border-radius: 10;
+  }
+    

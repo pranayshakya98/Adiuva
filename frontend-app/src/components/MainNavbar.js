@@ -88,15 +88,6 @@ function Navbar() {
                 <i class="far fa-comments"></i>
               </Link>
             </li>
-            <li className="Nav-item">
-              <Link
-                to="/appointment"
-                className="nav-links"
-                onClick={closeMobileViewMenu}
-              >
-                <i class="far fa-calendar-alt"></i>
-              </Link>
-            </li>
 
             <li>
                 <Link to="/login"

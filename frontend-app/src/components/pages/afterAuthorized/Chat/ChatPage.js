@@ -5,7 +5,7 @@ import PhoneIcon from "@material-ui/icons/Phone";
 import AttachmentIcon from "@material-ui/icons/Attachment";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import { useParams } from "react-router-dom";
-import ScheduleIcon from "@material-ui/icons/Schedule";
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import app, { db } from "../../../utils/fireApp";
 
 // Main chat operation to display and push data to database
@@ -104,11 +104,9 @@ allMsg.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : (a.timestamp === b.times
               <PhoneIcon />
             </IconButton>
 
-            <div className="search">
-
-
-              <ScheduleIcon onClick={() => setOpenPopup(true)}> </ScheduleIcon>
-            </div>
+           <IconButton>
+              <EventAvailableIcon onClick={() => setOpenPopup(true)}> </EventAvailableIcon>
+            </IconButton>
           </div>
         </div>
       </div>

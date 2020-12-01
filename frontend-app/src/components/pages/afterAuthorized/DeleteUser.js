@@ -3,6 +3,7 @@ import React, { useCallback } from "react";
 import Navbar from "../../MainNavbar";
 import "../Page.css";
 import firebase from 'firebase';
+import app, { db } from '../../utils/fireApp';
 
 const DeleteUser = ({ history }) => {
     // action handler when user provide email and password to delete account
@@ -16,6 +17,7 @@ const DeleteUser = ({ history }) => {
             } = event.target.elements;
             // getting current user to be deleted
             var user = firebase.auth().currentUser;
+            const uid = app.auth().currentUser.uid;
             var credential =firebase.auth.EmailAuthProvider.credential(
                 email.value, 
                 password.value
@@ -23,10 +25,15 @@ const DeleteUser = ({ history }) => {
             try {
                 // validating the credential and carrying the deletion of the user
                 user.reauthenticateWithCredential(credential).then(function() {
-                    user.delete().then(function() {
-                        // on success redirecting to confirmation page
-                        history.push("/pagedeleted");
-                    }).catch(function(error) {
+                    user.delete()
+                    .then(function() {
+                        db.doc(`/users/${uid}`).delete()
+                        .then(() => {
+                            // on success redirecting to confirmation page
+                            history.push("/pagedeleted");
+                        })
+                    })
+                    .catch(function(error) {
                         alert(error);
                     });
                 }).catch(function(error) {

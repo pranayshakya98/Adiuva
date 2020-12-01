@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "../../MainNavbar";
-import app from '../../utils/fireApp';
+import Navbar from "../../../MainNavbar";
+import app from '../../../utils/fireApp';
 
 const Appointment = ({ history }) => {
   // Check if the user is logged in

@@ -10,6 +10,8 @@ import CalendarToday from '@material-ui/icons/CalendarToday';
 import Link from 'react-router-dom/Link';
 import app, { db } from '../../utils/fireApp';
 import './UserProfile.css';
+import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+import BlockIcon from '@material-ui/icons/Block';
 
 // Class to handle the static user profile
 class UserProfile extends Component {
@@ -23,6 +25,7 @@ class UserProfile extends Component {
             state: "",
             imgURL: "",
             about: "",
+            verification: false,
             registeredAt: null
         },
         dPosts: null,
@@ -47,6 +50,7 @@ class UserProfile extends Component {
                     state: doc.data().stateName,
                     imgURL: doc.data().imgURL,
                     about: doc.data().about,
+                    verification: doc.data().verification,
                     registeredAt: doc.data().registeredAt
                 },
                 userID: uid
@@ -87,6 +91,14 @@ class UserProfile extends Component {
             history.push("/login");
         };
 
+        let verified = null;
+        if (this.state.user.verification) {
+            verified = <VerifiedUserIcon style={{ color: "blue" }} />;
+        }
+        else {
+            verified = <BlockIcon style={{ color: "black" }}/>;
+        }
+
         let recentDposts = this.state.dPosts ? (
             this.state.dPosts.map((dPost) => 
                 <Card className="card" justify="center" alignContent="center">
@@ -113,7 +125,9 @@ class UserProfile extends Component {
                                     <img src={this.state.user.imgURL} alt="Profile" width="200" class="rounded mb-2 img-thumbnail"></img>
                                     </div>
                                 <div class="media-body mb-5 text-white">
-                                    <h2 class="mt-0 mb-0">{this.state.user.fName} {this.state.user.lName}</h2>
+                                    <h2 class="mt-0 mb-0">{this.state.user.fName} {this.state.user.lName}
+                                    {verified}
+                                    </h2>
                                         <h3><i class="fas fa-map-marker-alt mr-2 mb-2"></i> {this.state.user.city}, {this.state.user.state}</h3>
                                         <p class="mb-4">
                                             <CalendarToday color="primary" />{' '}<b>Joined {dayjs(this.state.user.registeredAt).format('MMM YYYY')}</b>
