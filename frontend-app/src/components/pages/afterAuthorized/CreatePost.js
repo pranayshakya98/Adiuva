@@ -15,6 +15,7 @@ const CreatePost = ({ history }) => {
     const [img, setImg] = useState(null);
     // useState to define and set value to postType variable
     const [postType, setPostType] = useState('');
+    const [error, setError] = useState("");
     // checking it any file has been selected
     const fileHandler = data => {
         if(data.target.files[0]) {
@@ -42,7 +43,7 @@ const CreatePost = ({ history }) => {
             }
 
             if (errors !== '') {
-                alert(errors);
+                setError(errors);
             }
             else {
                 try {
@@ -52,7 +53,7 @@ const CreatePost = ({ history }) => {
                         "state_changed",
                         snapshot => {},
                         error => {
-                            alert(error);
+                            setError(error.message);
                         },
                         () => {
                             // geting url of the image
@@ -81,21 +82,20 @@ const CreatePost = ({ history }) => {
                                         .add(newPost)
                                         .then(() => {
                                             history.push("/feed");
-                                            alert("Post has been created successfully.");
                                         })
                                         .catch((err) => {
-                                            alert(err);
+                                            setError(err.message);
                                         })
                                     })
                                 })
                                 .catch((err) => {
-                                    alert(err)
+                                    setError(err.message)
                                 });
                         }
                     );
                     
                 } catch (err) {
-                    alert (err);
+                    setError(err.message);
                 }
             }
 
@@ -110,7 +110,7 @@ const CreatePost = ({ history }) => {
         <form onSubmit={onSubmitHandler} className="post-form">
           <h1> Creating New Post </h1>
           <hr />
-            <div className="radio1">
+            <div className="radio-post">
                 <p><h3> *Please select one of the following options: </h3>
                 <input type="radio" name="postType" value="Donation Request"
                  checked={postType === "Donation Request"} 
@@ -139,6 +139,7 @@ const CreatePost = ({ history }) => {
               <div>
               <input className="uploadMenu" type="file" onChange={fileHandler} accept="image/png, image/jpeg" />
               </div>
+              <h4 style={{color: "yellow"}}> {error} </h4>
               <button className="form-btnn" type="post">
                 Post
               </button>

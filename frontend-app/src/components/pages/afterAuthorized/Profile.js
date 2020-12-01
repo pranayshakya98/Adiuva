@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Navbar from "../../MainNavbar";
-import StarR from "./StarR";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -12,6 +11,7 @@ import Link from 'react-router-dom/Link';
 import app, { db } from '../../utils/fireApp';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import BlockIcon from '@material-ui/icons/Block';
+import Button from '@material-ui/core/Button';
 import './Profile.css';
 
 // Class to display profile component
@@ -105,6 +105,12 @@ class Profile extends Component {
             verifiedStr = "Not Verified. Please Email Valid ID to get Verified!"
         }
 
+        const onPostDeleteHandler = (postID) => {
+            db.doc(`dPosts/${postID}`).delete().then(() => {
+                history.push("/profile");
+            });
+        };
+
         const onSubmitHandler = () => {
                 try {
                     history.push("/deleteuser");
@@ -119,6 +125,10 @@ class Profile extends Component {
             this.state.dPosts.map((dPost) => 
                 <Card className="card" justify="center" alignContent="center">
                     <CardContent className="card-content">
+                    <Button variant="outlined" color="secondary" 
+                    onClick={() => onPostDeleteHandler(dPost.postID)}>
+                        DELETE
+                    </Button>
                     <div className="authorDetail">
                         <Typography variant="body2" color="textSecondary">{dayjs(dPost.createdAt).fromNow()}</Typography>
                         <Typography variant="body1"><b>Post-Type: {dPost.postType}</b></Typography>

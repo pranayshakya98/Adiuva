@@ -1,4 +1,5 @@
-.post-container {
+.post-container
+.container-delete {
     min-height: 100vh;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -8,7 +9,8 @@
     flex-direction: column;
   }
 
-.post-content {
+.post-content
+.content-delete {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
@@ -36,10 +38,11 @@ h1
     padding-bottom: 25px;
 }
 
-.radio1
+.radio-post
 {
     display: inline;
     font-size: large;
+    text-align: center;
     padding-right: 30px;
     padding-bottom: 20px;
 }

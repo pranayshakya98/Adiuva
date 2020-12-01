@@ -13,6 +13,16 @@
   flex-direction: column;
 }
 
+.content-delete {
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+
 .welcome-note {
     color: rgb(71, 45, 11);
     text-align: center;
@@ -361,17 +371,13 @@
   }
 }
 
-.form-btnDA {
+.btn-delete {
   border-radius: 30px;
-  font-size: 25px;
   margin-top: 50px;
-  height: 100px;
-  width: 200px;
-  margin-left: 30px;
   background-color: rgb(255, 0, 0);
 }
 
-.form-btnDA:hover {
+.btn-delete:hover {
   background-color: rgb(255, 75, 75);
   color: #242424;
   border-radius: 10;

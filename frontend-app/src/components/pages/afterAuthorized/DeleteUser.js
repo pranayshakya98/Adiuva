@@ -7,7 +7,7 @@ import app, { db } from '../../utils/fireApp';
 
 const DeleteUser = ({ history }) => {
     const userid = app.auth().currentUser.uid;
-    const [isPost, setIsPost] = useState(false);
+    const [error, setError] = useState("");
     // action handler when user provide email and password to delete account
     const onSubmitHandler = useCallback(
         async event => {
@@ -19,57 +19,55 @@ const DeleteUser = ({ history }) => {
             } = event.target.elements;
             // getting current user to be deleted
             var user = firebase.auth().currentUser;
-            
-            db.collection("dPosts").where("userID", "==", userid).get()
-            .then((data) => {
-                if (data.exists){
-                    setIsPost(true);
-                }
-            });
-            var credential =firebase.auth.EmailAuthProvider.credential(
-                email.value, 
-                password.value
-            );
-            try {
-            db.collection("users").doc(userid).delete()
-                    .then(() => {
-                        if (isPost){
-                            db.collection("dPosts").where("userID", "==", userid).get()
-                            .then((doc)=> {
-                                db.collection("dPosts").doc(doc.data().id).delete()
-                                .then(() => {
-                                    
-                                })
-                                .catch(function(error) {
-                                    alert(error);
+
+            if (email.value.trim() === '') {
+                setError("Email cannot be blank");
+            }
+            else if (password.value.trim() === '') {
+                setError("Password cannot be blank");
+            }
+            else{
+                var credential =firebase.auth.EmailAuthProvider.credential(
+                    email.value, 
+                    password.value
+                );
+                try {
+                    //validating the credential and carrying the deletion of the user
+                    user.reauthenticateWithCredential(credential).then(function() {
+                        user.delete()
+                        .then(function() {})
+                        .catch(function(err) {
+                            setError(err.message);
+                        });
+                    }).catch(function(err) {
+                        setError(err.message);
+                    });
+                    if (error == ""){
+                        db.collection("users").doc(userid).delete()
+                        .then(() => {})
+                        .catch(function(err) {
+                            setError(err.message);
+                        });
+                        var postRef = db.collection("dPosts").where("userID", "==", userid);
+                        if (error == "" && postRef){
+                            postRef.get().then((doc) => {
+                                doc.forEach((data) => {
+                                    data.ref.delete().then(() => {
+                                        history.push("/pagedeleted");
+                                    });
                                 });
-                            })
-                            .catch(function(error) {
-                                alert(error);
                             });
                         }
-                    })
-                    .catch(function(error) {
-                        alert(error);
-                    });
-                //validating the credential and carrying the deletion of the user
-                user.reauthenticateWithCredential(credential).then(function() {
-                    user.delete()
-                    .then(function() {
-                        // on success redirecting to confirmation page
-                        history.push("/pagedeleted");
-                    })
-                    .catch(function(error) {
-                        alert(error);
-                    });
-                }).catch(function(error) {
-                    alert(error);
-                  });
-
-            } 
-            catch (err) {
-                alert(err);
+                        else if (error !== ""){
+                            history.push("/pagedeleted");
+                        }
+                    }
+                } 
+                catch (err) {
+                    setError(err.message);
+                }
             }
+            
 
             
         }
@@ -79,11 +77,11 @@ const DeleteUser = ({ history }) => {
   return (
     <><Navbar />
     <div className="contact-card">
-        <div className="content-box">
+        <div className="content-delete">
             <div className="content">
-            <h1>Enter your Email and Password to DELETE your Account</h1>
+            <h2>Enter your Email and Password to DELETE your Account</h2>
             <div className="content-mild">
-                <form onSubmit={onSubmitHandler} className=" form-cardbox">
+                <form onSubmit={onSubmitHandler} className=" form-DA">
                 <div className="form-input">
                     <label htmlFor="username" className="form-label">
                     <input
@@ -94,10 +92,7 @@ const DeleteUser = ({ history }) => {
                         placeholder="Email"
                     />
                     </label>
-                </div>
-
-                <div className="form-inp">
-                        <label htmlFor="password" className="form-label">
+                <label htmlFor="password" className="form-label">
                         <input
                             id="password"
                             type="password"
@@ -106,11 +101,12 @@ const DeleteUser = ({ history }) => {
                             placeholder="Password"
                         />
                         </label>
-                    </div>
-
-                <button className="form-btnDA" type="submit">
+                
+                <h4 style={{color: "red"}}> {error} </h4>
+                <button className="btn-delete" type="submit">
                     DELETE ACCOUNT
                 </button>
+                </div>
                 </form>
             </div>
             </div>

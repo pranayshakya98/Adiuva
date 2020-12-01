@@ -24,6 +24,7 @@ class Feed extends Component {
     componentDidMount(){
         db
         .collection("dPosts")
+        .orderBy("createdAt", "desc")
         .get()
         .then((data) => {
             let posts = [];
