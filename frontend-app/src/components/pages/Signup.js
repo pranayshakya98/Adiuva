@@ -45,7 +45,7 @@ const Signup = ({ history }) => {
             } = event.target.elements;
             
             // regular expression for emails
-            const emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            const emailRegEx = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             
             // Validating all the use inputs and storeing respective error
 
@@ -115,7 +115,7 @@ const Signup = ({ history }) => {
                     setError(err.message);
                 }
             }
-        }
+        }, []
     );
 
     return (

@@ -22,11 +22,11 @@ const Contact = ({ history }) => {
             event.preventDefault();
             const { name, email, message } = event.target.elements;
             // validating inputs from error and setting errors
-            if (email.value == "") {
+            if (email.value === "") {
                 setError("Email cannot be blank.");
                 setSuccessMsg("");
             }
-            else if (message.value == "") {
+            else if (message.value === "") {
                 setError("Message cannot be blank.")
                 setSuccessMsg("");
             }
@@ -51,7 +51,7 @@ const Contact = ({ history }) => {
                 }
             }
         },
-        [history]
+        []
     );
 
   return (
@@ -59,7 +59,7 @@ const Contact = ({ history }) => {
     <div className="contact-card">
       <div className="content-box">
           <h1> Contact Us</h1>
-          <p>We'd ❤️ to hear from you</p>
+          <p>We'd <span role="img" aria-label="love">❤️</span> to hear from you</p>
           <div className="content-mild">
             <form className=" form-cardbox" onSubmit={onSubmitHandler}>
               <div className="form-input">

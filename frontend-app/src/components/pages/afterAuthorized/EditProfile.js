@@ -35,7 +35,7 @@ function EditProfile({ history }) {
                     };
                     console.log(newUser.city);
                     // Pushing the change to database
-                    if (newUser.city != ""){
+                    if (newUser.city !== ""){
                         db.doc(`/users/${userID}`).update(
                             {
                             city: newUser.city
@@ -44,7 +44,7 @@ function EditProfile({ history }) {
                             setError(err.message);
                         });
                     }
-                    if (newUser.stateName != ""){
+                    if (newUser.stateName !== ""){
                         db.doc(`/users/${userID}`).update(
                             {
                             stateName: newUser.stateName
@@ -53,7 +53,7 @@ function EditProfile({ history }) {
                             setError(err.message);
                         });
                     }
-                    if (newUser.zipcode != ""){
+                    if (newUser.zipcode !== ""){
                         db.doc(`/users/${userID}`).update(
                             {
                             zipcode: newUser.zipcode
@@ -62,7 +62,7 @@ function EditProfile({ history }) {
                             setError(err.message);
                         });
                     }
-                    if (newUser.about != ""){
+                    if (newUser.about !== ""){
                         db.doc(`/users/${userID}`).update(
                             {
                             about: newUser.about
@@ -75,7 +75,7 @@ function EditProfile({ history }) {
                     setError(err.message);
                 };
                 history.push("/profile");
-            });
+            }, [history, userID]);
 return(
 <><Navbar />
       <div className="content-editprofile">

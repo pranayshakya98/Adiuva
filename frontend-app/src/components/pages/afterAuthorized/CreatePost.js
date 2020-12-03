@@ -99,7 +99,7 @@ const CreatePost = ({ history }) => {
                 }
             }
 
-        }
+        }, [history, img, postType]
     );
 
 

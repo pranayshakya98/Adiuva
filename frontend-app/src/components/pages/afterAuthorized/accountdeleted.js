@@ -8,7 +8,7 @@ const DeletedPage= ({ history }) => {
         async event => {
             event.preventDefault();
             history.push("/signup");
-        },
+        }, [history]
     );
 
     return (

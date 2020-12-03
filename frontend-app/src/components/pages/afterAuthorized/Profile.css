@@ -165,6 +165,7 @@ button.bg-light:hover{background-color:#dae0e5!important}
     background-image:none;
     border-color:#343a40
 }
+
 .btn-outline-dark:hover{
     color:#fff;
     background-color:#343a40;
@@ -187,6 +188,7 @@ button.bg-light:hover{background-color:#dae0e5!important}
 .btn-block{
     display:block;
     width:100%;
+    background-color: transparent;
 }
 
 .connect-btn {

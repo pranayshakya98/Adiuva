@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, IconButton } from "@material-ui/core";
+import { Avatar } from "@material-ui/core";
 import "./SidebarChat.css";
 import { Link } from "react-router-dom";
-import app, { db } from "../../../utils/fireApp";
+import app from "../../../utils/fireApp";
 
 function SidebarChat({ id, fName, lName }) {
   const userID = app.auth().currentUser.uid;
@@ -18,7 +18,7 @@ function SidebarChat({ id, fName, lName }) {
     setSeed(Math.floor(Math.random() * 1000));
   }, []);
 
-  if (id != userID) {
+  if (id !== userID) {
     return (
       <Link to={`/chat/${id}`}>
         <div className="sidebarchat">

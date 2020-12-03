@@ -29,9 +29,8 @@ const ForgotPass = ({ history }) => {
             }
 
             
-        },
+        }, [history]
     );
-
 
   return (
     <><WelcomeNavbar />

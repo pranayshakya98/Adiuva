@@ -20,10 +20,10 @@ const Login = ({ history }) => {
         async event => {
             event.preventDefault();
             const { email, password } = event.target.elements;
-            if (email.value == "") {
+            if (email.value === "") {
                 setError("Email cannot be empty.");
             }
-            else if (password.value == "") {
+            else if (password.value === "") {
                 setError("Password cannot be blank.");
             }
             else {

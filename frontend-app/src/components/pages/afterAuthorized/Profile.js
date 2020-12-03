@@ -8,10 +8,14 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import Link from 'react-router-dom/Link';
-import app, { db } from '../../utils/fireApp';
+import app, { storage, db } from '../../utils/fireApp';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import BlockIcon from '@material-ui/icons/Block';
 import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import './Profile.css';
 
 // Class to display profile component
@@ -31,7 +35,9 @@ class Profile extends Component {
             verification: false,
             registeredAt: null
         },
-        dPosts: null
+        dPosts: null,
+        proImg: null,
+        open: false
     }
     // render the component
     render () {
@@ -111,6 +117,71 @@ class Profile extends Component {
             });
         };
 
+        const onProPicClickHandler = () => {
+            this.setState({
+                open: true
+            });
+        };
+
+        const handleClose = () => {
+            this.setState({
+                open: false
+            });
+            history.push("/profile");
+        };
+
+        const fileHandler = data => {
+            if(data.target.files[0]) {
+                this.setState({
+                    proImg: data.target.files[0]
+                });
+            }
+        };
+
+        const onUploadHandler = () => {
+            try {
+                // uploading image to the firebase storage
+                const uploadToFirebase = storage.ref(`images/${this.state.proImg.name}`).put(this.state.proImg);
+                uploadToFirebase.on(
+                    "state_changed",
+                    snapshot => {},
+                    error => {
+                        alert(error.message);
+                    },
+                    () => {
+                        // geting url of the image
+                        storage
+                            .ref("images")
+                            .child(this.state.proImg.name)
+                            .getDownloadURL()
+                            .then(Url => {
+                                const userID = app.auth().currentUser.uid;
+                                db.collection("users").doc(userID).update({
+                                    imgURL: Url
+                                })
+                                .then(() => {
+                                    this.setState({
+                                        open: false
+                                    });
+                                    console.log(this.state.open);
+                                    history.push("/profile");
+                                })
+                                .catch((err) => {
+                                    alert(err.message)
+                                });
+                                
+                            })
+                            .catch((err) => {
+                                alert(err.message)
+                            });
+                    }
+                );
+                
+            } catch (err) {
+                alert(err.message);
+            }
+        };
+
         const onSubmitHandler = () => {
                 try {
                     history.push("/deleteuser");
@@ -126,7 +197,7 @@ class Profile extends Component {
                 <Card className="card" justify="center" alignContent="center">
                     <CardContent className="card-content">
                     <Button variant="outlined" color="secondary" 
-                    onClick={() => onPostDeleteHandler(dPost.postID)}>
+                    onChange={fileHandler} accept="image/png, image/jpeg" onClick={() => onPostDeleteHandler(dPost.postID)}>
                         DELETE
                     </Button>
                     <div className="authorDetail">
@@ -149,7 +220,26 @@ class Profile extends Component {
                             <div class="media align-items-end profile-head">
                                 <div class="profile mr-3">
                                     <img src={this.state.user.imgURL} alt="Profile" width="200" class="rounded mb-2 img-thumbnail"></img>
-                                    <a href="#" class="profilepic-btn btn-outline-dark btn-block">Upload Profile Photo</a>
+                                    <br /><Button variant="contained" color="primary" onClick={onProPicClickHandler}>
+                                        UPLOAD PROFILE PHOTO
+                                    </Button>
+                                    <Dialog
+                                        open={this.state.open}
+                                        onClose={handleClose}
+                                        aria-labelledby="alert-dialog-title"
+                                        aria-describedby="alert-dialog-description"
+                                    >
+                                        <DialogContent>
+                                        <DialogContentText id="alert-dialog-description">
+                                            <input className="uploadMenu" type="file" onChange={fileHandler} accept="image/png, image/jpeg" />
+                                        </DialogContentText>
+                                        </DialogContent>
+                                        <DialogActions>
+                                        <Button variant="contained" color="primary" onClick={onUploadHandler}>
+                                            UPLOAD
+                                        </Button>
+                                        </DialogActions>
+                                    </Dialog>
                                     </div>
                                 <div class="media-body mb-5 text-white">
                                     <h2 class="mt-0 mb-0">{this.state.user.fName} {this.state.user.lName}</h2>

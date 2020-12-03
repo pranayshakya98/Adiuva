@@ -42,14 +42,14 @@ const DeleteUser = ({ history }) => {
                     }).catch(function(err) {
                         setError(err.message);
                     });
-                    if (error == ""){
+                    if (error === ""){
                         db.collection("users").doc(userid).delete()
                         .then(() => {})
                         .catch(function(err) {
                             setError(err.message);
                         });
                         var postRef = db.collection("dPosts").where("userID", "==", userid);
-                        if (error == "" && postRef){
+                        if (error === "" && postRef){
                             postRef.get().then((doc) => {
                                 doc.forEach((data) => {
                                     data.ref.delete().then(() => {
@@ -70,7 +70,7 @@ const DeleteUser = ({ history }) => {
             
 
             
-        }
+        }, [error, history, userid]
     );
 
 

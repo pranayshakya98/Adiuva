@@ -6,7 +6,7 @@ function Welcome() {
     <div className="chatpage">
       <h1>Welcome</h1>
       <div className ="start">
-      <h2>Start new conversation 🙂 </h2>
+      <h2>Start new conversation <span role="img" aria-label="happy"> 🙂 </span></h2>
       </div>
     </div>
   );

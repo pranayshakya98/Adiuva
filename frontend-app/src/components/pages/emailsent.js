@@ -8,7 +8,7 @@ const EmailSent= ({ history }) => {
         async event => {
             event.preventDefault();
             history.push("/login");
-        },
+        }, [history]
     );
 
     return (

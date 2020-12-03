@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./ChatPage.css";
-import { Avatar, IconButton, Button } from "@material-ui/core";
+import { Avatar, IconButton } from "@material-ui/core";
 import PhoneIcon from "@material-ui/icons/Phone";
 import AttachmentIcon from "@material-ui/icons/Attachment";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
@@ -18,7 +18,6 @@ function ChatPage() {
   const [messages2, setMessages2] = useState([]);
   const [userInfo, setUinfo] = useState("");
   const userID = app.auth().currentUser.uid;
-  const [openPopup, setOpenPopup] = useState(false);
 
   useEffect(() => {
     // If user is found, fetch the full name of the user
@@ -55,7 +54,7 @@ function ChatPage() {
 
             
     }
-  }, [userId]);
+  }, [userId, userID]);
 
 var allMsg = messages.concat(messages2);
 allMsg.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : (a.timestamp === b.timestamp) ? 0 : -1);
@@ -105,7 +104,7 @@ allMsg.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : (a.timestamp === b.times
             </IconButton>
 
            <IconButton>
-              <EventAvailableIcon onClick={() => setOpenPopup(true)}> </EventAvailableIcon>
+              <EventAvailableIcon > </EventAvailableIcon>
             </IconButton>
           </div>
         </div>

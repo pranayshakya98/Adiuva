@@ -23,7 +23,7 @@ const Survey = ({ history }) => {
         async event => {
             event.preventDefault();
             const { starRating, message } = event.target.elements;
-            if (starRating.value == "") {
+            if (starRating.value === "") {
                 setError("Must select at least a star.");
                 setSuccessMsg("");
             }
@@ -45,7 +45,7 @@ const Survey = ({ history }) => {
                 }
             }
         },
-        [history]
+        []
     );
 
     return (
