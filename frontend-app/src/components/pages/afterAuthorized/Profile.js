@@ -149,6 +149,7 @@ class Profile extends Component {
                             <div class="media align-items-end profile-head">
                                 <div class="profile mr-3">
                                     <img src={this.state.user.imgURL} alt="Profile" width="200" class="rounded mb-2 img-thumbnail"></img>
+                                    <a href="#" class="profilepic-btn btn-outline-dark btn-block">Upload Profile Photo</a>
                                     </div>
                                 <div class="media-body mb-5 text-white">
                                     <h2 class="mt-0 mb-0">{this.state.user.fName} {this.state.user.lName}</h2>
@@ -175,16 +176,16 @@ class Profile extends Component {
                             <h3 class="mb-0">Details</h3>
                             <div class="p-4 rounded shadow-sm bg-light">
                                 <b>
-        <label>First Name: {" "}{this.state.user.fName}</label><br />
-        <label>Middle Name: {" "}{this.state.user.mName}</label><br />
-        <label>Last Name: {" "}{this.state.user.lName}</label><br />
-        <label>Email: {" "}{this.state.user.email}</label><br />
-        <label>City: {" "}{this.state.user.city}</label><br />
-        <label>Zipcode: {" "}{this.state.user.zipcode}</label><br />
-        <label>State: {" "}{this.state.user.stateName}</label><br />
-        <label>Verification Status: {" "}{verified} {" "}{verifiedStr}</label><br />
-        <label>About: {" "}{this.state.user.about}</label>
-        </b>
+                            <label>First Name: {" "}{this.state.user.fName}</label><br />
+                            <label>Middle Name: {" "}{this.state.user.mName}</label><br />
+                            <label>Last Name: {" "}{this.state.user.lName}</label><br />
+                            <label>Email: {" "}{this.state.user.email}</label><br />
+                            <label>City: {" "}{this.state.user.city}</label><br />
+                            <label>Zipcode: {" "}{this.state.user.zipcode}</label><br />
+                            <label>State: {" "}{this.state.user.stateName}</label><br />
+                            <label>Verification Status: {" "}{verified} {" "}{verifiedStr}</label><br />
+                            <label>About: {" "}{this.state.user.about}</label>
+                            </b>
                             </div>
                             <form onSubmit={onSubmitHandler} className=" form-cardbox">
                             <button className="btn-delete" type="submit">

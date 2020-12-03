@@ -104,7 +104,7 @@ const Signup = ({ history }) => {
                         email: email.value,
                         zipcode: zipcode.value,
                         userID: newUserID,
-                        imgURL: "",
+                        imgURL: "https://firebasestorage.googleapis.com/v0/b/helpme-b7e48.appspot.com/o/images%2FAvatar-Maker.png?alt=media&token=078af6ac-1533-46a8-ae12-cc85091e313e",
                         about: "",
                         verification: false,
                         registeredAt: new Date().toISOString(),

@@ -199,6 +199,16 @@ button.bg-light:hover{background-color:#dae0e5!important}
     text-decoration: none;
 }
 
+.profilepic-btn {
+    padding: 8px 20px;
+    border-radius: 5px;
+    outline: blue;
+    border: black;
+    cursor: pointer;
+    background-color: rgb(116, 31, 212);
+    text-decoration: none;
+}
+
 .btn-delete {
     padding: 8px 20px;
     border-radius: 5px;
